@@ -24,6 +24,10 @@ while [ $SALIR -eq 0 ]; do
            ./ros-noetic-desktop-full/ros_noetic_config.sh
            SALIR=1 ;;
        5)
+           chmod +x ./ros-noetic-desktop-full/ros_noetic_config.sh
+           ./ros-noetic-desktop-full/ros_noetic_config.sh
+           SALIR=1 ;;
+       6)
            SALIR=1 ;;
        *)
          echo "Opcion erronea";;

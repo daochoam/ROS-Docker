@@ -7,10 +7,10 @@ sudo xhost +local:docker
 # Verificar si se ejecuta el script con sudo
 if [ "$EUID" -ne 0 ]; then
     # No se ejecuta con sudo, obtén el nombre de usuario del sistema local
-    DIR_DEFAULT="ROS/"
+    DIR_DEFAULT="Docker/ROS/"
 else
     # Se ejecuta con sudo, establece la ruta predeterminada para el usuario "docker"
-    DIR_DEFAULT="home/ROS"
+    DIR_DEFAULT="home/Docker/ROS"
 fi
 
 # Verificar si se proporcionó el directorio como argumento
@@ -38,8 +38,8 @@ XAUTHORITY_ABSOLUTE=$(realpath "$XAUTH.Xauthority")
 docker run -it \
     --privileged \
     --name=ros-noetic \
-    --net=host \
-    --publish=192.168.0.103:8080:8080/tcp \
+    --network=bridge \
+    --publish=192.168.1.0:8080:8080/tcp \
     --publish=8888:8888/tcp \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \

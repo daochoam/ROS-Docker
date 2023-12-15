@@ -27,7 +27,10 @@ ENV LC_ALL en_US.UTF-8
 RUN apt-get update && apt-get install -y \
     ros-noetic-moveit \
     ros-noetic-moveit-visual-tools \
+    ros-noetic-moveit-core \
     ros-noetic-rviz \
+    gazebo9 \
+    libgazebo9-dev \
     ros-noetic-rqt ros-noetic-rqt-common-plugins \
     ros-noetic-rqt-robot-plugins ros-noetic-rqt-pr2-dashboard \
     ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control && \
@@ -42,7 +45,11 @@ RUN echo "export ROSLAUNCH_SSH_UNKNOWN=1" >> /root/.zshrc
 # Configurar la variable ROS_IP
 ENV ROS_IP=127.0.0.1
 
+# Configurar la variable GAZEBO_MODEL_PATH
+ENV GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models
+
 # Configurar la variable ROS_MASTER_URI
 ENV ROS_MASTER_URI=http://localhost:11311
+
 # Ejecutar el comando bash al iniciar el contenedor
 CMD ["bash"]
